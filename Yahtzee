@@ -27,7 +27,7 @@ public class Yahtzee implements ActionListener {
 	JButton stopButton = new JButton ("Stop");
 	Container labelContainer = new Container();
 	JLabel currentScoreLBL = new JLabel("Current Score: 0");
-	JLabel totalScoreLBL = new JLabel("Total Score: 0");
+	JLabel totalScoreLBL = new JLabel("Final Score: 0");
 	JLabel currentRoundLBL = new JLabel("Current Round: 0");
 	int currentScore = 0;
 	int totalScore = 0;
