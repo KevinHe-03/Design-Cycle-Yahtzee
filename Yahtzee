@@ -16,9 +16,9 @@ public class Yahtzee implements ActionListener {
 	//global variables
 	JFrame frame = new JFrame ();
 	Container diceContainer = new Container();
-	JButton[] diceButtons = new JButton[6];
+	JButton[] diceButtons = new JButton[5];
 	ImageIcon[] imageIcons = new ImageIcon[6];
-	int[] buttonState = new int[6];
+	int[] buttonState = new int[5];
 	int[] dieValue = new int[6];
 	final int HOT_DIE = 0;
 	final int SCORE_DIE = 1;
@@ -133,7 +133,7 @@ public class Yahtzee implements ActionListener {
 		if (e.getSource().equals(rollButton)) { //what happens when the roll button is pressed
 			for (int a = 0; a < diceButtons.length; a++) {
 				if (buttonState[a] == HOT_DIE) {
-					int choice = (int)(Math.random() * 6);
+					int choice = (int)(Math.random() * 5);
 					dieValue[a] = choice;
 					diceButtons[a].setIcon(imageIcons[choice]);
 					diceButtons[a].setEnabled(true);
