@@ -10,6 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JRadioButton;
 
 public class Yahtzee implements ActionListener {
 	//global variables
@@ -23,9 +24,25 @@ public class Yahtzee implements ActionListener {
 	final int SCORE_DIE = 1;
 	final int LOCKED_DIE = 2;
 	Container buttonContainer = new Container();
+	Container methodContainer = new Container();
 	JButton rollButton = new JButton("Roll");
 	JButton scoreButton = new JButton("Score");
 	JButton stopButton = new JButton ("Stop");
+	
+	JRadioButton Ones = new JRadioButton("Ones");
+	JRadioButton Twos = new JRadioButton("Twos");
+	JRadioButton Threes = new JRadioButton("Threes");
+	JRadioButton Fours = new JRadioButton("Fours");
+	JRadioButton Fives = new JRadioButton("Fives");
+	JRadioButton Sixes = new JRadioButton("Sixes");
+	JRadioButton threeOfaKind = new JRadioButton("Three Of a Kind");
+	JRadioButton fourOfaKind = new JRadioButton("Four Of a Kind");
+	JRadioButton fullHouse = new JRadioButton("Full House");
+	JRadioButton smallStraight = new JRadioButton("Small Straight");
+	JRadioButton largeStraight = new JRadioButton("Large Straight");
+	JRadioButton Yahtzee = new JRadioButton("Yahtzee");
+	JRadioButton Chance = new JRadioButton("Chance");
+	
 	Container labelContainer = new Container();
 	JLabel currentScoreLBL = new JLabel("Current Score: 0");
 	JLabel totalScoreLBL = new JLabel("Final Score: 0");
@@ -65,11 +82,26 @@ public class Yahtzee implements ActionListener {
 		labelContainer.add(totalScoreLBL);
 		labelContainer.add(currentRoundLBL);
 		
+		methodContainer.setLayout(new GridLayout(3, 1));
+		methodContainer.add(Ones);
+		methodContainer.add(Twos);
+		methodContainer.add(Threes);
+		methodContainer.add(Fours);
+		methodContainer.add(Fives);
+		methodContainer.add(Sixes);
+		methodContainer.add(threeOfaKind);
+		methodContainer.add(fourOfaKind);
+		methodContainer.add(fullHouse);
+		methodContainer.add(smallStraight);
+		methodContainer.add(largeStraight);
+		methodContainer.add(Yahtzee);
+		methodContainer.add(Chance);
 		
 		frame.setLayout(new BorderLayout());
 		frame.add(diceContainer, BorderLayout.CENTER);
 		frame.add(buttonContainer, BorderLayout.NORTH);
 		frame.add(labelContainer, BorderLayout.SOUTH);
+		frame.add(methodContainer, BorderLayout.SOUTH);
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
