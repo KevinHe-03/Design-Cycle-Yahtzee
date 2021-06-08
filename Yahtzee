@@ -84,19 +84,32 @@ public class Yahtzee implements ActionListener {
 		
 		methodContainer.setLayout(new GridLayout(3, 1));
 		methodContainer.add(Ones);
+		Ones.addActionListener(this);
 		methodContainer.add(Twos);
+		Twos.addActionListener(this);
 		methodContainer.add(Threes);
+		Threes.addActionListener(this);
 		methodContainer.add(Fours);
+		Fours.addActionListener(this);
 		methodContainer.add(Fives);
+		Fives.addActionListener(this);
 		methodContainer.add(Sixes);
+		Sixes.addActionListener(this);
 		methodContainer.add(threeOfaKind);
+		threeOfaKind.addActionListener(this);
 		methodContainer.add(fourOfaKind);
+		fourOfaKind.addActionListener(this);
 		methodContainer.add(fullHouse);
+		fullHouse.addActionListener(this);
 		methodContainer.add(smallStraight);
+		smallStraight.addActionListener(this);
 		methodContainer.add(largeStraight);
+		largeStraight.addActionListener(this);
 		methodContainer.add(Yahtzee);
+		Yahtzee.addActionListener(this);
 		methodContainer.add(Chance);
-		
+		Chance.addActionListener(this);
+
 		frame.setLayout(new BorderLayout());
 		frame.add(diceContainer, BorderLayout.CENTER);
 		frame.add(buttonContainer, BorderLayout.NORTH);
@@ -129,6 +142,45 @@ public class Yahtzee implements ActionListener {
 					stopButton.setEnabled(true);
 				}
 			}
+		}
+		if (e.getSource().equals(Ones)) {
+			System.out.println("plz work");
+		}
+		if (e.getSource().equals(Twos)) {
+			
+		}
+		if (e.getSource().equals(Threes)) {
+			
+		}
+		if (e.getSource().equals(Fours)) {
+			
+		}
+		if (e.getSource().equals(Fives)) {
+			
+		}
+		if (e.getSource().equals(Sixes)) {
+			
+		}
+		if (e.getSource().equals(threeOfaKind)) {
+			
+		}		
+		if (e.getSource().equals(fourOfaKind)) {
+			
+		}
+		if (e.getSource().equals(fullHouse)) {
+			
+		}
+		if (e.getSource().equals(smallStraight)) {
+			
+		}
+		if (e.getSource().equals(largeStraight)) {
+			
+		}
+		if (e.getSource().equals(Yahtzee)) {
+			
+		}
+		if (e.getSource().equals(Chance)) {
+			
 		}
 		
 	}
