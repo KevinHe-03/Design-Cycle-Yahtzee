@@ -11,7 +11,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
-
+/*
+ * This program simulates the dice game Yahtzee
+ * Authors: Kevin He & Zeeman Shuai
+ * Date 6/9/21
+ */
 public class Yahtzee implements ActionListener {
 	//global variables
 	JFrame frame = new JFrame ();
@@ -234,46 +238,52 @@ public class Yahtzee implements ActionListener {
 			}
 			if(scoringMethod == 6) { //checking for three of a kind
 				if (valueCount[1] == 3 || valueCount[2] == 3 || valueCount[3] == 3 || valueCount[4] == 3 || valueCount[3] == 3 || valueCount[6] == 3) {
-					
+					currentScore += valueCount[1] * 1 + valueCount[2] *2 + valueCount[3] *3 + valueCount[4] *4 + valueCount[5] *5 + valueCount[6] * 6;	
+					System.out.println("You got a three of a kind!");
 				}
-				System.out.println("You got a three of a kind!");
 			}
 			if(scoringMethod == 7) {//checking for four of a kind
 				if (valueCount[1] == 4 || valueCount[2] == 4 || valueCount[3] == 4 || valueCount[4] == 4 || valueCount[3] == 4 || valueCount[6] == 4) {
-					
+					currentScore += valueCount[1] * 1 + valueCount[2] *2 + valueCount[3] *3 + valueCount[4] *4 + valueCount[5] *5 + valueCount[6] * 6;
+					System.out.println("You got a four of a kind!");
 				}
-				System.out.println("You got a four of a kind!");
 			}
 			if(scoringMethod == 8) {//checking for full house
 				if (valueCount[1] == 3 && valueCount[2] == 2 || valueCount[1] == 3 && valueCount[3] == 2 || valueCount[1] == 3 && valueCount[4] == 2 
 						|| valueCount[1] == 3 && valueCount[5] == 2 || valueCount[1] == 3 && valueCount[6] == 2) {
+					currentScore += 25;
 					System.out.println("Full house of ones!");
 				}
 				if (valueCount[2] == 3 && valueCount[1] == 2 || valueCount[2] == 3 && valueCount[3] == 2 || valueCount[2] == 3 && valueCount[4] == 2 
 						|| valueCount[2] == 3 && valueCount[5] == 2 || valueCount [2] == 3 && valueCount[6] == 2) {
+					currentScore += 25;
 					System.out.println("Full house of twos!");
 				}
 				if (valueCount[3] == 3 && valueCount[1] == 2 || valueCount[3] == 3 && valueCount[2] == 2 || valueCount[3] == 3 && valueCount[4] == 2 
 						|| valueCount[3] == 3 && valueCount[5] == 2 || valueCount [3] == 3 && valueCount[6] == 2) {
+					currentScore += 25;
 					System.out.println("Full house of threes!");
 				}
 				if (valueCount[4] == 3 && valueCount[1] == 2 || valueCount[4] == 3 && valueCount[2] == 2 || valueCount[4] == 3 && valueCount[3] == 2 
 						|| valueCount[4] == 3 && valueCount[5] == 2 || valueCount [4] == 3 && valueCount[6] == 2) {
+					currentScore += 25;
 					System.out.println("Full hosue of fours!");
 				}
 				if (valueCount[5] == 3 && valueCount[1] == 2 || valueCount[5] == 3 && valueCount[2] == 2 || valueCount[5] == 3 && valueCount[3] == 2 
 						|| valueCount[5] == 3 && valueCount[4] == 2 || valueCount [5] == 3 && valueCount[6] == 2) {
+					currentScore += 25;
 					System.out.println("Full hosue of fives!");
 				}
 				if (valueCount[6] == 3 && valueCount[1] == 2 || valueCount[6] == 3 && valueCount[2] == 2 || valueCount[6] == 3 && valueCount[3] == 2 
 						|| valueCount[6] == 3 && valueCount[4] == 2 || valueCount [6] == 3 && valueCount[5] == 2) {
+					currentScore += 25;
 					System.out.println("Full hosue of sixes!");
 				}
 			}
-			if(scoringMethod == 9) {
+			if(scoringMethod == 9) {//checking for small straight
 				
 			}
-			if(scoringMethod == 10) {
+			if(scoringMethod == 10) {//checking for large straight
 				
 			}
 			if(scoringMethod == 11) {//checking for Yahtzee
