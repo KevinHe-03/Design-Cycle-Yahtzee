@@ -37,6 +37,7 @@ public class Yahtzee implements ActionListener {
 	JButton lockButton = new JButton("Lock");
 	JButton scoreButton = new JButton("Score");
 	JButton stopButton = new JButton ("Stop");
+	
 	//Adding types of scoring methods
 	JRadioButton Ones = new JRadioButton("Ones");//button that prompts program to check for Ones scoring method
 	JRadioButton Twos = new JRadioButton("Twos");//button that prompts program to check for Twos scoring method
@@ -53,23 +54,6 @@ public class Yahtzee implements ActionListener {
 	JRadioButton Chance = new JRadioButton("Chance");//button that prompts program to add up the values of all five dice
 	ButtonGroup bg = new ButtonGroup();
 	
-	//JRadioButton selected;
-	
-	/*JButton Ones = new JButton("Ones");
-	JButton Twos = new JButton("Twos");
-	JButton Threes = new JButton("Threes");
-	JButton Fours = new JButton("Fours");
-	JButton Fives = new JButton("Fives");
-	JButton Sixes = new JButton("Sixes");
-	JButton threeOfaKind = new JButton("Three Of a Kind");
-	JButton fourOfaKind = new JButton("Four Of a Kind");
-	JButton fullHouse = new JButton("Full House");
-	JButton smallStraight = new JButton("Small Straight");
-	JButton largeStraight = new JButton("Large Straight");
-	JButton Yahtzee = new JButton("Yahtzee");
-	JButton Chance = new JButton("Chance");*/
-	
-	
 	//Tracks the scoring
 	Container labelContainer = new Container();
 	JLabel currentScoreLBL = new JLabel("Current Score: 0");
@@ -78,6 +62,7 @@ public class Yahtzee implements ActionListener {
 	int currentScore = 0;
 	int totalScore = 0;
 	int currentRound = 1;
+	int lockedCount;
 	
 	public Yahtzee() {
 		//Setting up the GUI
@@ -98,7 +83,7 @@ public class Yahtzee implements ActionListener {
 			diceButtons[a].setBackground(Color.WHITE);
 			diceContainer.add(diceButtons[a]);
 		}
-		buttonContainer.setLayout(new GridLayout(1, 3));////creates roll, score, lock, and stop buttons at the top of the layout
+		buttonContainer.setLayout(new GridLayout(1, 3));//creates roll, score, lock, and stop buttons at the top of the layout
 		buttonContainer.add(rollButton);
 		rollButton.addActionListener(this);
 		buttonContainer.add(lockButton);
@@ -110,10 +95,12 @@ public class Yahtzee implements ActionListener {
 		stopButton.addActionListener(this);
 		stopButton.setEnabled(false);
 		labelContainer.setLayout(new GridLayout(3, 1));
-		////creates current score, current round, and total score labels
+		
+		//creates current score, current round, and total score labels
 		labelContainer.add(currentScoreLBL);
 		labelContainer.add(totalScoreLBL);
 		labelContainer.add(currentRoundLBL);
+		
 		//Adding action listeners to scoring method buttons
 		methodContainer.setLayout(new GridLayout(3, 1));
 		methodContainer.add(Ones);
@@ -143,6 +130,7 @@ public class Yahtzee implements ActionListener {
 		methodContainer.add(Chance);
 		Chance.addActionListener(this);
 		
+		//Adding radio buttons to a button group
 		bg.add(Ones);
 		bg.add(Twos);
 		bg.add(Threes);
@@ -156,7 +144,6 @@ public class Yahtzee implements ActionListener {
 		bg.add(largeStraight);
 		bg.add(Yahtzee);
 		bg.add(Chance);
-		
 		
 		//Setting up the frame layout 
 		frame.setLayout(new BorderLayout());
@@ -177,7 +164,7 @@ public class Yahtzee implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {//System to track which scoring method was selected
+	public void actionPerformed(ActionEvent e) {//System to track which scoring method was selected		
 		if (e.getSource().equals(Ones)) {
 			scoringMethod = 0;
 		}
@@ -233,7 +220,7 @@ public class Yahtzee implements ActionListener {
 			if(rolledOnce != 2) {
 				for (int a = 0; a < diceButtons.length; a++) {
 					if (buttonState[a] != LOCKED_DIE) {
-						int choice = (int)(Math.random() * 6);//randomly picks from the six dice
+						int choice = (int)(Math.random() * 6); //Randomly picks from one to six
 						dieValue[a] = choice;
 						diceButtons[a].setIcon(imageIcons[choice]);
 						diceButtons[a].setEnabled(true);
@@ -244,7 +231,7 @@ public class Yahtzee implements ActionListener {
 				rolledOnce++;
 			}
 			if(rolledOnce == 2) {
-				rollButton.setEnabled(false);//doesn't allow the user to roll the dice more than two times
+				rollButton.setEnabled(false);
 			}
 		}
 		else if (e.getSource().equals(lockButton)) {//What happens when lock button is pressed
@@ -255,7 +242,7 @@ public class Yahtzee implements ActionListener {
 				}
 				diceButtons[a].setEnabled(false);
 			}
-			int lockedCount = 0;
+			lockedCount = 0;
 			for (int a = 0; a < diceButtons.length; a++) {
 				if (buttonState[a] == LOCKED_DIE) {
 					lockedCount++;
@@ -360,17 +347,17 @@ public class Yahtzee implements ActionListener {
 				}
 				if(scoringMethod == 9) {//checking for small straight
 					smallStraight.setEnabled(false);
-					if (valueCount[1] == 1 && valueCount[2] == 1 && valueCount[3] == 1 && valueCount[4] == 1 || 
-							valueCount[5] == 1 && valueCount[2] == 1 && valueCount[3] == 1 && valueCount[4] == 1 ||
-							valueCount[5] == 1 && valueCount[6] == 1 && valueCount[3] == 1 && valueCount[4] == 1)
-						
+					if ((valueCount[1] == 1 && valueCount[2] == 1 && valueCount[3] == 1 && valueCount[4] == 1) || 
+							(valueCount[5] == 1 && valueCount[2] == 1 && valueCount[3] == 1 && valueCount[4] == 1) ||
+							(valueCount[5] == 1 && valueCount[6] == 1 && valueCount[3] == 1 && valueCount[4] == 1)) {
 						currentScore += 30;
+					}
 	
 				}
 				if(scoringMethod == 10) {//checking for large straight
 					largeStraight.setEnabled(false);
-					if (valueCount[1] == 1 && valueCount[2] == 1 && valueCount[3] == 1 && valueCount[4] == 1 && valueCount[5] == 1 ||
-							valueCount[6] == 1 && valueCount[2] == 1 && valueCount[3] == 1 && valueCount[4] == 1 && valueCount[5] == 1) {
+					if ((valueCount[1] == 1 && valueCount[2] == 1 && valueCount[3] == 1 && valueCount[4] == 1 && valueCount[5] == 1) ||
+							(valueCount[6] == 1 && valueCount[2] == 1 && valueCount[3] == 1 && valueCount[4] == 1 && valueCount[5] == 1)) {
 						currentScore += 40; 
 					}
 				}
@@ -392,7 +379,7 @@ public class Yahtzee implements ActionListener {
 				for (int a = 0; a < diceButtons.length; a++) {
 					if (buttonState[a] == SCORE_DIE) {//If the selected dice are scored, the buttons will turn blue and will become locked
 						buttonState[a] = LOCKED_DIE;
-						diceButtons[a].setBackground(Color.BLUE);
+						diceButtons[a].setBackground(Color.BLUE); 
 					}
 					diceButtons[a].setEnabled(false);
 				}
@@ -409,10 +396,10 @@ public class Yahtzee implements ActionListener {
 					}
 				}
 				
-				//reset all stuff
+				//Reset everything
 				scoringMethod = 30;
 				rolledOnce = 0;
-				if(currentRound == 13) {
+				if(currentRound == 13) {//When the game ends round 13, endGame method is called
 					endGame();
 				}
 				currentRound++;
@@ -430,7 +417,7 @@ public class Yahtzee implements ActionListener {
 
 			}
 		}
-		else if (e.getSource().equals(stopButton)) {
+		else if (e.getSource().equals(stopButton)) {//What happens when you press the "stop" button
 			endGame();
 		}
 		else {
