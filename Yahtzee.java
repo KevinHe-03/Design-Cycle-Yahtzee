@@ -6,10 +6,12 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 /*
  * This program simulates the dice game Yahtzee
@@ -49,6 +51,9 @@ public class Yahtzee implements ActionListener {
 	JRadioButton largeStraight = new JRadioButton("Large Straight");
 	JRadioButton Yahtzee = new JRadioButton("Yahtzee");
 	JRadioButton Chance = new JRadioButton("Chance");
+	ButtonGroup bg = new ButtonGroup();
+	
+	//JRadioButton selected;
 	
 	/*JButton Ones = new JButton("Ones");
 	JButton Twos = new JButton("Twos");
@@ -135,6 +140,22 @@ public class Yahtzee implements ActionListener {
 		Yahtzee.addActionListener(this);
 		methodContainer.add(Chance);
 		Chance.addActionListener(this);
+		
+		bg.add(Ones);
+		bg.add(Twos);
+		bg.add(Threes);
+		bg.add(Fours);
+		bg.add(Fives);
+		bg.add(Sixes);
+		bg.add(fullHouse);
+		bg.add(threeOfaKind);
+		bg.add(fourOfaKind);
+		bg.add(smallStraight);
+		bg.add(largeStraight);
+		bg.add(Yahtzee);
+		bg.add(Chance);
+		
+		
 		//Setting up the frame layout 
 		frame.setLayout(new BorderLayout());
 		frame.add(diceContainer, BorderLayout.CENTER);
@@ -405,6 +426,8 @@ public class Yahtzee implements ActionListener {
 			}
 			else {
 				System.out.println("No Scoring Method!!!");
+				JOptionPane.showMessageDialog(frame, "No Scoring Method Selected!!!");
+
 			}
 		}
 		else if (e.getSource().equals(stopButton)) {
@@ -440,15 +463,17 @@ public class Yahtzee implements ActionListener {
 	
 	public void endGame() {
 		
-		//Create a popup window that says the final score
+		JOptionPane.showMessageDialog(frame, "Game Over! Final Score: " + currentScore);
+		
+		bg.clearSelection();
 		
 		if(totalScore < currentScore) {
 			totalScore = currentScore;
-			//make the popup say high score
+			JOptionPane.showMessageDialog(frame, "New High Score!");
 		}
 		currentScore = 0; 
 		currentScoreLBL.setText("Current Score: " + currentScore);
-		totalScoreLBL.setText("Total Score: " + totalScore);
+		totalScoreLBL.setText("Highest Score: " + totalScore);
 		currentRound = 0;
 		currentRoundLBL.setText("Current Round: " + currentRound);
 		resetDice();
